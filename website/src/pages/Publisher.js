@@ -1,10 +1,10 @@
-import React from "react";
+// src/pages/Publisher.js
+import React from 'react';
 
 const Publisher = () => {
   return (
     <div>
-      <h2>Publisher Page</h2>
-      {/* Publisher specific components */}
+      <h1>Publisher Page</h1>
     </div>
   );
 };

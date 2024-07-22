@@ -1,9 +1,10 @@
 // src/authConfig.js
 export const msalConfig = {
     auth: {
-        clientId: "462c6ca8-7195-4d35-93fa-cdd29365b5d2",
-        authority: "https://login.microsoftonline.com/f06c4699-544b-4db2-97fa-f3ef59998515",
-        redirectUri: window.location.origin
+        clientId: "2dc3aaad-4bb5-46b8-8436-727d8957f7d6", // Ensure this matches the Application (client) ID in Azure AD B2C
+        authority: "https://payorob2c.b2clogin.com/payorob2c.onmicrosoft.com/B2C_1_signupsignin", // Ensure this is the correct authority URL
+        knownAuthorities: ["payorob2c.b2clogin.com"],
+        redirectUri: "http://localhost:3000" // This should be your application's redirect URI
     },
     cache: {
         cacheLocation: "sessionStorage",
@@ -12,5 +13,5 @@ export const msalConfig = {
 };
 
 export const loginRequest = {
-    scopes: ["api://74945747-6de1-42db-ba37-7579c1c8075b/api.read"]
+    scopes: ["openid", "profile", "offline_access", "https://payorob2c.onmicrosoft.com/TheApi/access_as_user"] // Ensure the API scope URL is correct
 };

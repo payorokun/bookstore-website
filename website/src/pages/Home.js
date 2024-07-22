@@ -1,10 +1,10 @@
-import React from "react";
+// src/pages/Home.js
+import React from 'react';
 
 const Home = () => {
   return (
     <div>
-      <h2>Home Page</h2>
-      <p>Welcome to the React application with Azure AD authentication.</p>
+      <h1>Home Page</h1>
     </div>
   );
 };

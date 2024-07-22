@@ -1,18 +1,8 @@
 // src/components/Navbar.js
-import React from "react";
-import { Link } from "react-router-dom";
-import { useMsal } from "@azure/msal-react";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const { instance, accounts } = useMsal();
-  const isAuthenticated = accounts.length > 0;
-
-  const handleLogout = () => {
-    instance.logoutPopup().catch(e => {
-      console.error(e);
-    });
-  };
-
+const Navbar = ({ isAuthenticated, handleLogin, handleLogout }) => {
   return (
     <nav>
       <Link to="/">Home</Link>
@@ -23,7 +13,7 @@ const Navbar = () => {
           <button onClick={handleLogout}>Logout</button>
         </>
       ) : (
-        <Link to="/login">Login</Link>
+        <button onClick={handleLogin}>Login</button>
       )}
     </nav>
   );

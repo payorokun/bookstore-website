@@ -1,10 +1,10 @@
-import React from "react";
+// src/pages/Admin.js
+import React from 'react';
 
 const Admin = () => {
   return (
     <div>
-      <h2>Admin Page</h2>
-      {/* Admin specific components */}
+      <h1>Admin Page</h1>
     </div>
   );
 };
