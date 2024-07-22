@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import PropTypes from 'prop-types';
 
 const Navbar = ({ isAuthenticated, handleLogin, handleLogout }) => {
   return (
@@ -19,6 +20,11 @@ const Navbar = ({ isAuthenticated, handleLogin, handleLogout }) => {
       </div>
     </nav>
   );
+};
+Navbar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  handleLogin: PropTypes.func.isRequired,
+  handleLogout: PropTypes.func.isRequired
 };
 
 export default Navbar;

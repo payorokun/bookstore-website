@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useMsal, useIsAuthenticated, useAccount } from '@azure/msal-react';
 import { loginRequest } from '../authConfig';
@@ -13,7 +13,7 @@ const DataViewer = () => {
   const isAuthenticated = useIsAuthenticated();
   const account = useAccount(accounts[0] || {});
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     if (!isAuthenticated || !account) {
       setError('User is not logged in');
       setLoading(false);
@@ -47,7 +47,7 @@ const DataViewer = () => {
       setLoading(false);
       console.error('Error fetching data:', error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
