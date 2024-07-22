@@ -53,6 +53,13 @@ const DataViewer = () => {
     fetchData();
   }, [instance, accounts, isAuthenticated, account]);
 
+  const handleReload = () => {
+    setData([]);
+    setLoading(true);
+    setError('');
+    fetchData();
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -64,7 +71,7 @@ const DataViewer = () => {
   return (
     <div>
       <h2>Data Viewer</h2>
-      <button onClick={fetchData}>Reload</button>
+      <button onClick={handleReload}>Reload</button>
       <table className="table">
         <thead>
           <tr>
