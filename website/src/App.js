@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+// src/App.js
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -7,9 +8,27 @@ import { loginRequest } from "./authConfig";
 import { AuthProvider, useAuth } from "./AuthContext";
 
 function App() {
-  const { instance } = useMsal();
-  const { isInitialized, account } = useAuth();
-    
+  const { instance, accounts } = useMsal();
+  const { isInitialized } = useAuth();
+  const [isAuthenticated, setIsAuthenticated] = useState(accounts.length > 0);
+
+  useEffect(() => {
+    const handleAuthChange = () => {
+      setIsAuthenticated(accounts.length > 0);
+    };
+
+    handleAuthChange();
+    const callbackId = instance.addEventCallback((message) => {
+      if (message.eventType === 'msal:loginSuccess' || message.eventType === 'msal:logoutSuccess') {
+        handleAuthChange();
+      }
+    });
+
+    return () => {
+      instance.removeEventCallback(callbackId);
+    };
+  }, [instance, accounts]);
+
   const handleLogin = () => {
     instance.loginPopup(loginRequest).catch(e => {
       console.error(e);
@@ -25,7 +44,7 @@ function App() {
   return (
       isInitialized ? (
           <div>
-              <Navbar isAuthenticated={!!account} handleLogin={handleLogin} handleLogout={handleLogout} />
+              <Navbar isAuthenticated={isAuthenticated} handleLogin={handleLogin} handleLogout={handleLogout} />
               <Routes>
                   <Route path="/" element={<Home />} />
               </Routes>
