@@ -4,8 +4,7 @@ import React from "react";
 const LoginPage = ({ handleLogin }) => {
   return (
     <div>
-      <h2>Login Page</h2>
-      <button onClick={handleLogin}>Login</button>
+      <h2>Please login</h2>
     </div>
   );
 };

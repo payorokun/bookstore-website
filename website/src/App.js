@@ -1,19 +1,15 @@
-// src/App.js
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import Admin from "./pages/Admin";
-import Publisher from "./pages/Publisher";
-import LoginPage from "./components/LoginPage";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "./authConfig";
+import { AuthProvider, useAuth } from "./AuthContext";
 
 function App() {
   const { instance } = useMsal();
-  const isAuthenticated = useIsAuthenticated();
-
+  const { isInitialized, account } = useAuth();
+    
   const handleLogin = () => {
     instance.loginPopup(loginRequest).catch(e => {
       console.error(e);
@@ -27,15 +23,16 @@ function App() {
   };
 
   return (
-    <div>
-      <Navbar isAuthenticated={isAuthenticated} handleLogin={handleLogin} handleLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
-        <Route path="/admin" element={<PrivateRoute component={Admin} />} />
-        <Route path="/publisher" element={<PrivateRoute component={Publisher} />} />
-      </Routes>
-    </div>
+      isInitialized ? (
+          <div>
+              <Navbar isAuthenticated={!!account} handleLogin={handleLogin} handleLogout={handleLogout} />
+              <Routes>
+                  <Route path="/" element={<Home />} />
+              </Routes>
+          </div>
+      ) : (
+          <div>Loading...</div>
+      )
   );
 }
 

@@ -1,0 +1,15 @@
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .file-upload-column,
+  .data-viewer-column {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
