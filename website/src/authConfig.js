@@ -3,7 +3,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 // src/authConfig.js
 export const msalConfig = {
     auth: {
-        clientId: "2dc3aaad-4bb5-46b8-8436-727d8957f7d6", // Ensure this matches the Application (client) ID in Azure AD B2C
+        clientId: "7ea41ef4-b059-4b0d-9ead-acb40df161f8", // Ensure this matches the Application (client) ID in Azure AD B2C
         authority: "https://payorob2c.b2clogin.com/payorob2c.onmicrosoft.com/B2C_1_signupsignin", // Ensure this is the correct authority URL
         knownAuthorities: ["payorob2c.b2clogin.com"],
         redirectUri: window.location.origin
