@@ -6,7 +6,7 @@ export const msalConfig = {
         clientId: "2dc3aaad-4bb5-46b8-8436-727d8957f7d6", // Ensure this matches the Application (client) ID in Azure AD B2C
         authority: "https://payorob2c.b2clogin.com/payorob2c.onmicrosoft.com/B2C_1_signupsignin", // Ensure this is the correct authority URL
         knownAuthorities: ["payorob2c.b2clogin.com"],
-        redirectUri: "https://google.com"
+        redirectUri: window.location.origin
     },
     cache: {
         cacheLocation: "sessionStorage",
