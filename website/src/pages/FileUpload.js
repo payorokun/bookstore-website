@@ -40,8 +40,9 @@ const FileUpload = () => {
         setMessage('Unauthorized. Please log in again.');
       } else {
         setMessage('Error uploading file');
-        console.log('Error uploading file:', error);
       }
+      console.log('Error uploading file:', error);
+      setFile(null);
     }
   };
 
