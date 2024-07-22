@@ -51,7 +51,7 @@ const DataViewer = () => {
 
   useEffect(() => {
     fetchData();
-  }, [instance, accounts, isAuthenticated, account]);
+  }, [instance, accounts, isAuthenticated, account, fetchData]);
 
   const handleReload = () => {
     setData([]);

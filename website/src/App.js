@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import { useMsal } from "@azure/msal-react";
 import { loginRequest } from "./authConfig";
-import { AuthProvider, useAuth } from "./AuthContext";
+import { useAuth } from "./AuthContext";
 
 function App() {
   const { instance, accounts } = useMsal();
