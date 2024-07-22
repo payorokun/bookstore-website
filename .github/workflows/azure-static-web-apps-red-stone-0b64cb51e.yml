@@ -25,10 +25,12 @@ jobs:
           node-version: '18'
       - name: Install Dependencies
         run: npm install
+        working-directory: ./website
       - name: Build
         run: |
           # Set CI to false to prevent treating warnings as errors
           CI=false npm run build
+        working-directory: ./website
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
